@@ -12,9 +12,8 @@ public class TaskServiceImpl implements TaskServices {
 
     public TaskServiceImpl() {
         this.list = new ArrayList<>();
-        list.add(new Task("Second Task","This is my second task",12));
-
-        list.add(new Task("First Task","This is my first task",45));
+        list.add(new Task(12,"Second Task","This is my second task"));
+        list.add(new Task(456,"First Task","This is my first task"));
     }
 
     @Override
@@ -22,7 +21,34 @@ public class TaskServiceImpl implements TaskServices {
         return list;
     }
 
-    public Task getTask(){
+    @Override
+    public Task getTask(long taskId){
+        Task ts = null;
+        for(Task it:list){
+            if(it.getId() == taskId){
+                ts = it;
+                break;
+            }
+        }
+        return ts;
+    }
 
+
+    @Override
+    public Task addTask(Task task) {
+        list.add(task);
+        return task;
+    }
+
+    @Override
+    public Task updateTask(Task task) {
+        for(Task ts:list){
+            if(ts.getId() == task.getId()){
+                ts.setTitle(task.getTitle());
+                ts.setDescription(task.getDescription());
+                break;
+            }
+        }
+        return task;
     }
 }
