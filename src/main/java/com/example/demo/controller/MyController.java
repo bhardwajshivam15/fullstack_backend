@@ -14,10 +14,6 @@ import java.util.List;
 public class MyController {
     @Autowired
     private TaskServices taskServices;
-    @GetMapping("/home")
-    public String Home(){
-        return "Home";
-    }
 
     @GetMapping("/tasks")
     public List<Task> getTasks(){
