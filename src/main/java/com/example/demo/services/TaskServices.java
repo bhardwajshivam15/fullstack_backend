@@ -10,4 +10,5 @@ public interface TaskServices {
     public Task getTask(long taskId);
     public Task addTask(Task task);
     public Task updateTask(Task task);
+    public Task deleteTask(long taskId);
 }

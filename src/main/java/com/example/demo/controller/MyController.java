@@ -35,4 +35,9 @@ public class MyController {
         return this.taskServices.updateTask(task);
     }
 
+    @DeleteMapping("/tasks/{id}")
+    public Task deleteTask(@PathVariable String id){
+        return this.taskServices.deleteTask(Long.parseLong(id));
+    }
+
 }

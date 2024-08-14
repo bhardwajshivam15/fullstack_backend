@@ -51,4 +51,17 @@ public class TaskServiceImpl implements TaskServices {
         }
         return task;
     }
+
+    @Override
+    public Task deleteTask(long taskId) {
+        int size = list.size();
+        Task ts = getTask(taskId);
+        for(int i=0;i<size;i++){
+            if(list.get(i).getId() == taskId){
+                list.remove(i);
+                break;
+            }
+        }
+        return ts;
+    }
 }
