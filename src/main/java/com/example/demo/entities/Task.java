@@ -1,9 +1,17 @@
 package com.example.demo.entities;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Task {
+
+    @Id
     private long id;
     private String title;
     private String description;
+
+    public Task() {
+    }
 
     public Task( long id, String title, String description) {
         this.title = title;
