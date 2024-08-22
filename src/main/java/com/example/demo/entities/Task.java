@@ -1,45 +1,97 @@
 package com.example.demo.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String title;
     private String description;
+    private String priority;
+    private LocalDateTime dueDate;
 
-    public Task() {
-    }
+    private LocalDateTime createdOn;
+    private LocalDateTime lastUpdated;
 
-    public Task( long id, String title, String description) {
+    public Task(){}
+
+    public Task(String title, String description, String priority, LocalDateTime dueDate) {
         this.title = title;
         this.description = description;
+        this.priority = priority;
+        this.dueDate = dueDate;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdOn = LocalDateTime.now();
+        lastUpdated = createdOn;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        lastUpdated = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public LocalDateTime getDueDate() {
+        return dueDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDueDate(LocalDateTime dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public long getId() {
-        return id;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }
